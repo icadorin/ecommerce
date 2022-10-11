@@ -10,11 +10,11 @@ module.exports = async function (req, res, next) {
         if(user.role === 0) {
             return res.status(403).json({
                 error: 'Access to admin feature denied'
-            })
+            });
         }
         next();
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error)
         res.status(500).send('Server error')
     }
 }

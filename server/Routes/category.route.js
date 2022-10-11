@@ -3,7 +3,7 @@ const router = express.Router();
 const Category = require('../models/Category');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
-
+const categoryById = require('../middleware/categoryById');
 const { check, validationResult } = require('express-validator');
 
 // @route POST api/category
@@ -18,13 +18,9 @@ router.post('/', [
             error: errors.array()[0].msg
         });
     }
-    const {
-        name
-    } = req.body
+    const { name } = req.body
     try {
-        let category = await Category.findOne({
-            name
-        });
+        let category = await Category.findOne({ name });
 
         if (category) {
             return res.status(403).json({
@@ -57,8 +53,41 @@ router.get('/all', async (req, res) => {
 // @route GET api/category/:categoryId
 // @desc  GET single category
 // @acess Public
-router.post('/:categoryId', async (req, res) => {
+router.get('/:categoryId', categoryById, async (req, res) => {
+    res.json(req.category);
+});
 
-})
+// @route PUT api/category/:categoryId
+// @desc  UPDATE single category
+// @acess Private Admin
+router.put('/:categoryId', auth, adminAuth, categoryById, async (req, res) => {
+    let category = req.category;
+    const { name } = req.body;
+    if(name) category.name = name.trim()
+
+    try {
+        category = await category.save();
+        res.json(category)
+    } catch (error) {
+        console.log(error.menssage);
+        res.send(500).send('Server error');
+    }
+});
+
+// @route DELETE api/category/:categoryId
+// @desc  DELETE single category
+// @acess Private Admin
+router.delete('/:categoryId', auth, adminAuth, categoryById, async (req, res) => {
+    let category = req.category;
+    try {
+        let deleteCategory = await category.remove()
+        res.json({
+            message: `${deleteCategory.name} delete successfully`
+        })
+    } catch (error) {
+        console.log(error.menssage);
+        res.send(500).send('Server error');
+    }
+});
 
 module.exports = router;

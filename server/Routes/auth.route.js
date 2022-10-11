@@ -18,8 +18,8 @@ router.get('/', auth, async (req, res) => {
         // Get user information by id
         const user = await User.findById(req.user.id).select('-password')
         res.json(user)
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.status(500).send('Server Error')
     }
 })
@@ -96,8 +96,8 @@ router.post('/register', [
                 res.json({ token });
             }
         );
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.status(500).send('Server error');
     }
 });
@@ -137,8 +137,8 @@ router.post('/login', [
             })
         }
 
-        // User founded
-        const isMath = await bcrypt.compare(password, user.password);
+        // User found
+        const isMatch = await bcrypt.compare(password, user.password);
 
         // password dont match
         if (!isMatch) {
@@ -167,8 +167,8 @@ router.post('/login', [
             })
         }
         )
-    } catch (err) {
-        console.log(err.message);
+    } catch (error) {
+        console.log(error.message);
         res.status(500).send('Server error');
     }
 });
