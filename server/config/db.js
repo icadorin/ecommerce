@@ -1,7 +1,7 @@
 const { route } = require('../routes/auth.route');
 const mongoose = require('mongoose');
 
-const connectDB = async() => {
+const connectDB = async () => {
     const connection = await mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true

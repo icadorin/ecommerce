@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "vite-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,16 +8,21 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "biuld:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss srt/assets/tailwind.css -o src/assets/main.css"
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
   },
   "eslintConfig": {
     "extends": [

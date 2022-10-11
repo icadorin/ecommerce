@@ -9,6 +9,7 @@ const gravatar = require('gravatar'); // Get user image by email
 // Models
 const User = require('../models/User');
 const auth = require('../middleware/auth')
+
 // @route POST api/user
 // @desc  User Information
 // @acess Private
@@ -33,9 +34,9 @@ router.post('/register', [
     check('password', 'Please enter a password with 6 or more characters').isLength({
         min: 6
     })
-], async(req, res) => {
+], async (req, res) => {
     const errors = validationResult(req);
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
         return res.status(400).json({
             errors: errors.array()
         });
@@ -46,9 +47,9 @@ router.post('/register', [
     try {
         // Check if user already exist
         let user = await User.findOne({ email });
-        
+
         // If user exist
-        if(user) {
+        if (user) {
             return res.status(400).json({
                 errors: [
                     {
@@ -61,9 +62,9 @@ router.post('/register', [
         // If not exists
         // Get image from gravatar
         const avatar = gravatar.url(email, {
-            s:'200',// Size
-            r:'pg', // Rate
-            d:'mm'
+            s: '200',// Size
+            r: 'pg', // Rate
+            d: 'mm'
         });
 
         // Create user object
@@ -88,10 +89,10 @@ router.post('/register', [
         jwt.sign(
             payload,
             process.env.JWT_SECRET, {
-                expiresIn: 360000 // change later 3600
-            },
+            expiresIn: 360000 // change later 3600
+        },
             (err, token) => {
-                if(err) throw err;
+                if (err) throw err;
                 res.json({ token });
             }
         );
@@ -108,10 +109,10 @@ router.post('/login', [
     // Validation for email and password
     check('email', 'please include a valid email').isEmail(),
     check('password', 'password is required').exists()
-], async(req, res) => {
+], async (req, res) => {
     // If error
     const errors = validationResult(req);
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
         return res.status(400).json({
             errors: errors.array()
         })
@@ -128,7 +129,7 @@ router.post('/login', [
         });
 
         // Not found in database
-        if(!user) {
+        if (!user) {
             return res.status(400).json({
                 errors: [{
                     msg: 'Invalid credentials'
@@ -140,14 +141,14 @@ router.post('/login', [
         const isMath = await bcrypt.compare(password, user.password);
 
         // password dont match
-        if(!isMatch) {
+        if (!isMatch) {
             return res.status(400).json({
                 error: [{
                     msg: 'Invalid credentials'
                 }]
             })
         }
-        
+
         // payload for jwt
         const payload = {
             user: {
@@ -158,13 +159,13 @@ router.post('/login', [
         jwt.sign(
             payload,
             process.env.JWT_SECRET, {
-                expiresIn: 360000
-            }, (err, token) => {
-                if(err) throw err;
-                res.json({
-                    token
-                })
-            }
+            expiresIn: 360000
+        }, (err, token) => {
+            if (err) throw err;
+            res.json({
+                token
+            })
+        }
         )
     } catch (err) {
         console.log(err.message);

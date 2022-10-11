@@ -13,20 +13,20 @@ router.post("/", auth, adminAuth, (req, res) => {
     let form = new formidable.IncomingForm()
     form.keepExtension = true;
 
-    form.parse(req, async(err, fields, files) => {
-        if(err) {
+    form.parse(req, async (err, fields, files) => {
+        if (err) {
             return res.status(400).json({
                 error: 'Image could not be uploaded'
             })
         }
 
-        if(!file.photo) {
+        if (!file.photo) {
             return res.status(400).json({
                 error: 'Image is required'
             })
         }
 
-        if(files.photo.type !== 'image/jpeg' && files.photo.type !== 'image/jpg' && files.photo.type !== 'image/png') {
+        if (files.photo.type !== 'image/jpeg' && files.photo.type !== 'image/jpg' && files.photo.type !== 'image/png') {
             return res.status(400).json({
                 error: 'Image type not allowed'
             })
@@ -41,7 +41,7 @@ router.post("/", auth, adminAuth, (req, res) => {
             quantity,
             shipping
         } = fields;
-        if(!name || !description || !price || !category || !quantity || !shipping) {
+        if (!name || !description || !price || !category || !quantity || !shipping) {
             return res.status(400).json({
                 error: 'All fields are required'
             })
@@ -49,7 +49,7 @@ router.post("/", auth, adminAuth, (req, res) => {
 
         let product = new Product(fields)
         // 1MB = 1.000.000
-        if(files.photo.size > 1000000) {
+        if (files.photo.size > 1000000) {
             return res.status(400).json({
                 error: 'Image should be less than 1MB in size'
             })
