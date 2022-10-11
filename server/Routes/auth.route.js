@@ -10,7 +10,7 @@ const gravatar = require('gravatar'); // Get user image by email
 const User = require('../models/User');
 const auth = require('../middleware/auth')
 
-// @route POST api/user
+// @route GET api/user
 // @desc  User Information
 // @acess Private
 router.get('/', auth, async (req, res) => {
@@ -165,8 +165,8 @@ router.post('/login', [
             res.json({
                 token
             })
-        }
-        )
+        })
+        
     } catch (error) {
         console.log(error.message);
         res.status(500).send('Server error');

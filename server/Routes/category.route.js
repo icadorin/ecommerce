@@ -34,11 +34,10 @@ router.post('/', [
         console.log(error);
         res.status(500).send('Server error');
     }
-    //res.send('Ok');
 });
 
 // @route GET api/category/all
-// @desc  GET all category
+// @desc  Get all category
 // @acess Public
 router.get('/all', async (req, res) => {
     try {
@@ -51,14 +50,14 @@ router.get('/all', async (req, res) => {
 });
 
 // @route GET api/category/:categoryId
-// @desc  GET single category
+// @desc  Get single category
 // @acess Public
 router.get('/:categoryId', categoryById, async (req, res) => {
     res.json(req.category);
 });
 
 // @route PUT api/category/:categoryId
-// @desc  UPDATE single category
+// @desc  Update single category
 // @acess Private Admin
 router.put('/:categoryId', auth, adminAuth, categoryById, async (req, res) => {
     let category = req.category;
@@ -75,7 +74,7 @@ router.put('/:categoryId', auth, adminAuth, categoryById, async (req, res) => {
 });
 
 // @route DELETE api/category/:categoryId
-// @desc  DELETE single category
+// @desc  Delete single category
 // @acess Private Admin
 router.delete('/:categoryId', auth, adminAuth, categoryById, async (req, res) => {
     let category = req.category;

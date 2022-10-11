@@ -6,7 +6,7 @@ const adminAuth = require('../middleware/adminAuth');
 const formidable = require('formidable');
 const fs = require('fs');
 
-// @route Post api/product
+// @route POST api/product
 // @desc  Create a Product
 // @acess Private Admin
 router.post("/", auth, adminAuth, (req, res) => {
@@ -20,13 +20,13 @@ router.post("/", auth, adminAuth, (req, res) => {
             })
         }
 
-        if (!file.photo) {
+        if (!files.photo) {
             return res.status(400).json({
                 error: 'Image is required'
             })
         }
-
-        if (files.photo.type !== 'image/jpeg' && files.photo.type !== 'image/jpg' && files.photo.type !== 'image/png') {
+        
+        if (files.photo.mimetype !== 'image/jpeg' && files.photo.mimetype !== 'image/jpg' && files.photo.mimetype !== 'image/png') {
             return res.status(400).json({
                 error: 'Image type not allowed'
             })
@@ -55,13 +55,13 @@ router.post("/", auth, adminAuth, (req, res) => {
             })
         }
 
-        product.photo.data = fs.readFileSync(files.photo.path);
-        product.photo.contentType = file.photo.type;
+        product.photo.data = fs.readFileSync(files.photo.filepath);
+        product.photo.contentType = files.photo.mimetype;
 
         try {
             await product.save()
             res.json('Product Create Successfully')
-        } catch {
+        } catch (error) {
             console.log(error)
             res.status(500).send('Server error')
         }
