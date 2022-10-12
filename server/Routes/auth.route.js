@@ -8,7 +8,7 @@ const gravatar = require('gravatar'); // Get user image by email
 
 // Models
 const User = require('../models/User');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
 
 // @route GET api/user
 // @desc  User Information
@@ -22,7 +22,7 @@ router.get('/', auth, async (req, res) => {
         console.log(error.message);
         res.status(500).send('Server Error')
     }
-})
+});
 
 // @route POST api/user/register
 // @desc  Register user
