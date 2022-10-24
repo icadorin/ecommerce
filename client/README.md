@@ -2,5 +2,10 @@
 
 ## Project setup
 ```
-yarn start
+npm install
+```
+
+### Compile
+```
+npm start
 ```
