@@ -1,4 +1,4 @@
-## App
+## Server
 
 ## Project setup
 ```
@@ -7,5 +7,5 @@ npm install
 
 ### Compile
 ```
-npm start
+npx nodemon server.js
 ```
