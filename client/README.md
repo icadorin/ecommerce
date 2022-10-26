@@ -9,7 +9,7 @@ npm install
 ```
 npm start
 ```
-Screen prototypes
+## Screen prototypes
 
 ### Home
 ![Index](https://user-images.githubusercontent.com/37721806/198152172-c0a106a2-1fce-4266-842e-511a6d74f2d1.png)
