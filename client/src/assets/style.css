@@ -1,0 +1,86 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.navbar {
+  background-color: #F6F6EA;
+  box-shadow: 0 0 0.3em #7a7a7a;
+}
+
+.div-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 65px;
+  margin-top: 10px;
+  margin-left: 15px;
+  transition-duration: 500ms;
+  padding-bottom: 8px;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  transition-duration: 500ms;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+}
+
+.ul-menu-items {
+  margin-left: 30px;
+  transition-duration: 500ms;
+}
+
+.list-items {
+  font-size: 15px;
+  color: #000;
+  text-decoration: none;
+  font-family: 'Arial';
+  transition-duration: 500ms;
+}
+
+.list-items:hover {
+  color: #ab6dfd;
+  transition-duration: 500ms;
+}
+
+.shopping-cart {
+  font-size: 35px;
+  color: #FA6A6A;
+  transition-duration: 500ms;
+  margin-left: 30px;
+}
+
+.shopping-cart:hover {
+  color: #000;
+  transition-duration: 500ms;
+}
+
+.login-button {
+  background-color: #FA6A6A;
+  font-family: 'Segoe UI', Verdana, sans-serif;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  height: 35px;
+  width: 65px;
+  transition-duration: 500ms;
+  margin-right: 30px;
+  margin-left: 30px;
+  border: none;
+}
+
+.login-button:hover {
+  background-color: #ab6dfd;
+  transition-duration: 500ms;
+  color: white
+}
