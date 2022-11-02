@@ -7,10 +7,10 @@ import { IoMenu, IoClose, IoCartOutline } from "react-icons/io5";
 const Navbar = () => {
 
   let Links = [
-    { name: 'HOME', link: '/' },
-    { name: 'PRODUTOS', link: '/shop' },
-    { name: 'REGISTRAR', link: '/' },
-    { name: 'CONTATO', link: '/' },
+    { name: 'Home', link: '/' },
+    { name: 'Produtos', link: '/shop' },
+    { name: 'Registrar', link: '/' },
+    { name: 'Contato', link: '/' },
   ];
 
   let [open, setOpen] = useState(false);
