@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../components/container/container.component';
 
 let Price = [
@@ -10,14 +10,12 @@ let Price = [
 ];
 
 let Category = [
-  { name: '0-500' },
-  { name: '500-1000' },
-  { name: '1000-1500' },
-  { name: '1500-3000' },
+  { name: 'Celulares' },
+  { name: 'Fones de ouvido' },
 ];
 
 let Products = [
-  { name: 'android' },
+  { name: 'iphone' },
   { name: 'iphone' },
   { name: 'iphone' },
   { name: 'iphone' },
@@ -25,32 +23,40 @@ let Products = [
 ];
 
 const Shop = () => {
+  let [select, setSelect] = useState(false);
+
   return (
     <Container>
       <h2 className='filter-desc'>Filtros</h2>
       <div className='div-products'>
         <div className='div-filters'>
-          <h1>Preço</h1>
-          <ul>
-            {
-              Price.map((price) => (
-                <li key={price.name} className=''>
-                  <h1 href={price.name}>{price.name}</h1>
-                </li>
-              ))
-            }
-          </ul>
-          <hr></hr>
-          <h1>Categoria</h1>
-          <ul>
-            {
-              Category.map((category) => (
-                <li key={category.name} className=''>
-                  <h1 href={category.name}>{category.name}</h1>
-                </li>
-              ))
-            }
-          </ul>
+          <div className='box-product'>
+            <h1 className='font-filters'>Preço</h1>
+            <ul>
+              {
+                Price.map((price) => (
+                  <li key={price.name} className='font-filters-items pointer-pass'>
+                    <h1 id='selecPrice' onClick={() => setSelect(!select)} className={`${select && price.name == 'Todos' ? 'select' : ''}`}
+                      href={price.name}
+                    >
+                      {price.name}
+                    </h1>
+                  </li>
+                ))
+              }
+            </ul>
+            <hr className='skyline'></hr>
+            <h1 className='font-filters'>Categoria</h1>
+            <ul>
+              {
+                Category.map((category) => (
+                  <li key={category.name} className='font-filters-items pointer-pass'>
+                    <h1 href={category.name}>{category.name}</h1>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
         <div id='container'>
           <ul className='ul-products'>
