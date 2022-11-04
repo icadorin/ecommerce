@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Container from '../components/container/container.component';
 
 let Price = [
-  { name: '0-500' },
-  { name: '500-1000' },
-  { name: '1000-1500' },
-  { name: '1500-3000' },
+  { name: '0 - 500' },
+  { name: '500 - 1000' },
+  { name: '1000 - 1500' },
+  { name: '1500 - 3000' },
   { name: 'Todos' },
 ];
 
@@ -23,7 +23,24 @@ let Products = [
 ];
 
 const Shop = () => {
-  let [select, setSelect] = useState(false);
+  const [selectPrice, setSelectPrice] = useState(false);
+  const [selectCateg, setSelectCateg] = useState(false);
+  const [selectPriceIndex, setSelectPriceIndex] = useState(0);
+  const [selectCategIndex, setSelectCategIndex] = useState(0);
+  const [checkIdxPrice, setCheckIdxPrice] = useState(0);
+  const [checkIdxCateg, setCheckIdxCateg] = useState(0);
+
+  const handleClickPrice = (index) => {
+    checkIdxPrice === index && selectPrice === true ? setSelectPrice(false) : setSelectPrice(true);
+    setCheckIdxPrice(index);
+    setSelectPriceIndex(index);
+  };
+
+  const handleClickCateg = (index) => {
+    checkIdxCateg === index && selectCateg === true ? setSelectCateg(false) : setSelectCateg(true);
+    setCheckIdxCateg(index);
+    setSelectCategIndex(index);
+  };
 
   return (
     <Container>
@@ -34,10 +51,10 @@ const Shop = () => {
             <h1 className='font-filters'>Preço</h1>
             <ul>
               {
-                Price.map((price) => (
-                  <li key={price.name} className='font-filters-items pointer-pass'>
-                    <h1 id='selecPrice' onClick={() => setSelect(!select)} className={`${select && price.name == 'Todos' ? 'select' : ''}`}
-                      href={price.name}
+                Price.map((price, index) => (
+                  <li className='font-filters-items pointer-pass'>
+                    <h1 key={index} onClick={(e) => handleClickPrice(index)}
+                      className={`${selectPrice && index === selectPriceIndex ? 'select' : ''}`}
                     >
                       {price.name}
                     </h1>
@@ -49,9 +66,13 @@ const Shop = () => {
             <h1 className='font-filters'>Categoria</h1>
             <ul>
               {
-                Category.map((category) => (
-                  <li key={category.name} className='font-filters-items pointer-pass'>
-                    <h1 href={category.name}>{category.name}</h1>
+                Category.map((category, index) => (
+                  <li className='font-filters-items pointer-pass'>
+                    <h1 key={index} onClick={(e) => handleClickCateg(index)}
+                      className={`${selectCateg && index === selectCategIndex ? 'select' : ''}`}
+                    >
+                      {category.name}
+                    </h1>
                   </li>
                 ))
               }
@@ -62,7 +83,7 @@ const Shop = () => {
           <ul className='ul-products'>
             {
               Products.map((products) => (
-                <li key={products.name} className='li-products'>
+                <li className='li-products'>
                   <h1 href={products.name}>{products.name}</h1>
                 </li>
               ))

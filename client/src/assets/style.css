@@ -118,6 +118,7 @@ ul {
 }
 
 .div-filters {
+  flex: none;
   margin-top: 10px;
   border-radius: 2px;
   margin-left: 30px;
@@ -150,6 +151,10 @@ ul {
 
 .select {
   border: solid 1px #fd7e7e;
+  border-radius: 2px;
+  box-shadow: 0 0 1em #ffa8a8;
+  background-color: #ffe0e0;
+  color: #000;
 }
 
 .pointer-pass {
@@ -159,6 +164,7 @@ ul {
 .pointer-pass:hover {
   cursor: pointer;
   box-shadow: 0 0 1em #fd7e7e;
+  background-color: #ffe0e0;
   transition-duration: 600ms;
   color: #000;
 }
