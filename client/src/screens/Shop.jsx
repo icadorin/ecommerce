@@ -1,5 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from '../components/container/container.component';
+import axios from 'axios';
+
+const ShopSelection = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchproducts = async () => {
+      const { data } = await axios.get('/api/product/list');
+      setProducts(data);
+    };
+    fetchproducts();
+  }, []);
+}
 
 let Price = [
   { name: '0 - 500' },
@@ -84,7 +97,11 @@ const Shop = () => {
             {
               Products.map((products) => (
                 <li className='li-products'>
-                  <h1 href={products.name}>{products.name}</h1>
+                  <div>
+                    <div className='div-img-prod'></div>
+                    <hr className='skyline'></hr>
+                    <h1 className='prod-desc' href={products.name}>{products.name}</h1>
+                  </div>
                 </li>
               ))
             }
