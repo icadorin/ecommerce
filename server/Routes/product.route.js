@@ -21,13 +21,25 @@ router.post('/', auth, adminAuth, async (req, res) => {
       });
     }
 
-    if (!files.photo) {
+    if (!files.smallImage) {
+      return res.status(400).json({
+        error: 'Small image is required'
+      });
+    }
+
+    if (!files.image) {
       return res.status(400).json({
         error: 'Image is required'
       });
     }
 
-    if (files.photo.mimetype !== 'image/jpeg' && files.photo.mimetype !== 'image/jpg' && files.photo.mimetype !== 'image/png') {
+    if (files.smallImage.mimetype !== 'image/jpeg' && files.smallImage.mimetype !== 'image/jpg' && files.smallImage.mimetype !== 'image/png') {
+      return res.status(400).json({
+        error: 'Small image type not allowed'
+      });
+    }
+
+    if (files.image.mimetype !== 'image/jpeg' && files.image.mimetype !== 'image/jpg' && files.image.mimetype !== 'image/png') {
       return res.status(400).json({
         error: 'Image type not allowed'
       });
@@ -50,14 +62,23 @@ router.post('/', auth, adminAuth, async (req, res) => {
 
     let product = new Product(fields);
     // 1MB = 1.000.000
-    if (files.photo.size > 1000000) {
+    if (files.smallImage.size > 1000000) {
+      return res.status(400).json({
+        error: 'Small image should be less than 1MB in size'
+      });
+    }
+
+    // 1MB = 1.000.000
+    if (files.image.size > 1000000) {
       return res.status(400).json({
         error: 'Image should be less than 1MB in size'
       });
     }
 
-    product.photo.data = fs.readFileSync(files.photo.filepath);
-    product.photo.contentType = files.photo.mimetype;
+    product.smallImage.data = fs.readFileSync(files.smallImage.filepath);
+    product.smallImage.contentType = files.smallImage.mimetype;
+    product.image.data = fs.readFileSync(files.image.filepath);
+    product.image.contentType = files.image.mimetype;
 
     try {
       await product.save();
@@ -80,7 +101,7 @@ router.get('/list', async (req, res) => {
 
   try {
     let products = await Product.find({})
-      .select('-photo').populate('category').sort([
+      .select('-smallImage').select('-image').populate('category').sort([
         [sortBy, order]
       ]).limit(limit).exec();
 
@@ -128,7 +149,7 @@ router.get('/search', async (req, res) => {
   }
 
   try {
-    let products = await Product.find(query).select('-photo');
+    let products = await Product.find(query).select('-smallImage').select('-image');
     res.json(products);
   } catch (error) {
     console.log(error);
@@ -140,17 +161,32 @@ router.get('/search', async (req, res) => {
 // @desc  Get a product information
 // @acess Public
 router.get('/:productId', productById, async (req, res) => {
-  req.product.photo = undefined;
+  req.product.smallImage = undefined;
+  req.product.image = undefined;
   return res.json(req.product);
 });
 
-// @route GET api/product/photo/:productId
+// @route GET api/product/smallimage/:productId
+// @desc  Get a product smallImage
+// @acess Public
+router.get('/smallimage/:productId', productById, async (req, res) => {
+  if (req.product.smallImage.data) {
+    res.set('Content-Type', req.product.smallImage.contentType);
+    return res.send(req.product.smallImage.data);
+  }
+
+  res.status(400).json({
+    error: 'Failed load small image'
+  });
+});
+
+// @route GET api/product/image/:productId
 // @desc  Get a product image
 // @acess Public
-router.get('/photo/:productId', productById, async (req, res) => {
-  if (req.product.photo.data) {
-    res.set('Content-Type', req.product.photo.contentType);
-    return res.send(req.product.photo.data);
+router.get('/image/:productId', productById, async (req, res) => {
+  if (req.product.image.data) {
+    res.set('Content-Type', req.product.image.contentType);
+    return res.send(req.product.image.data);
   }
 
   res.status(400).json({
