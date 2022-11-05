@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Container from '../components/container/container.component';
 import axios from 'axios';
 
-const ShopSelection = () => {
+const Shop = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -12,30 +12,28 @@ const ShopSelection = () => {
     };
     fetchproducts();
   }, []);
-}
 
-let Price = [
-  { name: '0 - 500' },
-  { name: '500 - 1000' },
-  { name: '1000 - 1500' },
-  { name: '1500 - 3000' },
-  { name: 'Todos' },
-];
+  let Price = [
+    { name: '0 - 500' },
+    { name: '500 - 1000' },
+    { name: '1000 - 1500' },
+    { name: '1500 - 3000' },
+    { name: 'Todos' },
+  ];
 
-let Category = [
-  { name: 'Celulares' },
-  { name: 'Fones de ouvido' },
-];
+  let Category = [
+    { name: 'Celulares' },
+    { name: 'Fones de ouvido' },
+  ];
 
-let Products = [
-  { name: 'iphone' },
-  { name: 'iphone' },
-  { name: 'iphone' },
-  { name: 'iphone' },
-  { name: 'iphone' },
-];
+  let Products = [
+    { name: 'iphone' },
+    { name: 'iphone' },
+    { name: 'iphone' },
+    { name: 'iphone' },
+    { name: 'iphone' },
+  ];
 
-const Shop = () => {
   const [selectPrice, setSelectPrice] = useState(false);
   const [selectCateg, setSelectCateg] = useState(false);
   const [selectPriceIndex, setSelectPriceIndex] = useState(0);
@@ -95,12 +93,15 @@ const Shop = () => {
         <div id='container'>
           <ul className='ul-products'>
             {
-              Products.map((products) => (
+              products.map((product) => (
                 <li className='li-products'>
                   <div>
-                    <div className='div-img-prod'></div>
+                    <div className='div-img-prod'>
+                      <img className='img-prod' src={`/api/product/smallimage/${product._id}`}></img>
+                    </div>
                     <hr className='skyline'></hr>
-                    <h1 className='prod-desc' href={products.name}>{products.name}</h1>
+                    <h1 className='prod-desc' href={product.name}>{product.name}</h1>
+                    <h1 className='prod-desc' href={product.price}>{ product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }</h1>
                   </div>
                 </li>
               ))

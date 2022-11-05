@@ -159,10 +159,21 @@ ul {
 .div-img-prod {
   height: 170px;
   margin: 10px;
-  background-color: #ffff8e;
+  background-color: white;
+  box-shadow: inset 0 0 0.2em #a3a3a3;
+  border-radius: 2px;
+}
+
+.img-prod {
+  padding-top: 15px;
+  margin: auto;
+  display: block;
+  height: 140px;
+  width: 180px;
 }
 
 .prod-desc {
+  text-align: center;
   font-size: 15px;
   margin: 10px;
 }
