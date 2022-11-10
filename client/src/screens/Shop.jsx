@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/container/container.component';
+import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
+
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [selectPrice, setSelectPrice] = useState(false);
+  const [selectCateg, setSelectCateg] = useState(false);
+  const [selectPriceIndex, setSelectPriceIndex] = useState(0);
+  const [selectCategIndex, setSelectCategIndex] = useState(0);
+  const [checkIdxPrice, setCheckIdxPrice] = useState(0);
+  const [checkIdxCateg, setCheckIdxCateg] = useState(0);
+  const [search, setSearch] = useState('');
+
+  console.log(search);
 
   useEffect(() => {
     const fetchproducts = async () => {
@@ -26,21 +37,6 @@ const Shop = () => {
     { name: 'Fones de ouvido' },
   ];
 
-  let Products = [
-    { name: 'iphone' },
-    { name: 'iphone' },
-    { name: 'iphone' },
-    { name: 'iphone' },
-    { name: 'iphone' },
-  ];
-
-  const [selectPrice, setSelectPrice] = useState(false);
-  const [selectCateg, setSelectCateg] = useState(false);
-  const [selectPriceIndex, setSelectPriceIndex] = useState(0);
-  const [selectCategIndex, setSelectCategIndex] = useState(0);
-  const [checkIdxPrice, setCheckIdxPrice] = useState(0);
-  const [checkIdxCateg, setCheckIdxCateg] = useState(0);
-
   const handleClickPrice = (index) => {
     checkIdxPrice === index && selectPrice === true ? setSelectPrice(false) : setSelectPrice(true);
     setCheckIdxPrice(index);
@@ -51,7 +47,10 @@ const Shop = () => {
     checkIdxCateg === index && selectCateg === true ? setSelectCateg(false) : setSelectCateg(true);
     setCheckIdxCateg(index);
     setSelectCategIndex(index);
+    console.log(Category[index].name);
   };
+
+  const filterProduct = products.filter((product) => product.toString().startsWith(search));
 
   return (
     <Container>
@@ -90,23 +89,31 @@ const Shop = () => {
             </ul>
           </div>
         </div>
-        <div id='container'>
-          <ul className='ul-products'>
-            {
-              products.map((product) => (
-                <li className='li-products'>
-                  <div>
-                    <div className='div-img-prod'>
-                      <img className='img-prod' src={`/api/product/smallimage/${product._id}`}></img>
+        <div>
+          <div className='container-product-list'>
+            <div className='div-input-filter'>
+              <input className='input-filter' type='text' placeholder='Nome do produto' value={search}
+                onChange={(ev) => setSearch(ev.target.value)}
+              />
+              <IoSearch className='icon-filter' />
+            </div>
+            <ul className='ul-products'>
+              {
+                filterProduct.map((product) => (
+                  <li className='li-products'>
+                    <div>
+                      <div className='div-img-prod'>
+                        <img className='img-prod' src={`/api/product/smallimage/${product._id}`}></img>
+                      </div>
+                      <hr className='skyline'></hr>
+                      <h1 className='prod-desc' href={product.name}>{product.name}</h1>
+                      <h1 className='prod-desc' href={product.price}>{product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h1>
                     </div>
-                    <hr className='skyline'></hr>
-                    <h1 className='prod-desc' href={product.name}>{product.name}</h1>
-                    <h1 className='prod-desc' href={product.price}>{ product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}) }</h1>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </Container>

@@ -133,6 +133,33 @@ ul {
   margin-right: 20px;
 }
 
+.container-product-list {
+  width: calc(100vw - 270px);
+}
+
+.div-input-filter {
+  flex: none;
+  text-align: center;
+}
+
+.input-filter[type=text]{
+  color: #000;
+  text-align: center;
+  margin: 10px;
+  height: 25px;
+  width: 400px;
+  border-radius: 2px;
+  border: 1px solid #F6F6EA;
+  box-shadow: 0 0 0.2em #a3a3a3;
+  outline: none;
+}
+
+.icon-filter {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 15px;
+}
+
 .ul-products {
   display: flex;
   flex-wrap: wrap;
@@ -168,8 +195,8 @@ ul {
   padding-top: 15px;
   margin: auto;
   display: block;
-  height: 140px;
-  width: 180px;
+  height: 130px;
+  width: 130px;
 }
 
 .prod-desc {
