@@ -138,12 +138,10 @@ ul {
 }
 
 .div-input-filter {
-  flex: none;
   text-align: center;
 }
 
-.input-filter[type=text]{
-  color: #000;
+.input-filter[type=text] {
   text-align: center;
   margin: 10px;
   height: 25px;
@@ -158,6 +156,13 @@ ul {
   position: absolute;
   margin-left: -30px;
   margin-top: 15px;
+  color: #a3a3a3;
+}
+
+@media (max-width: 720px) {
+  .icon-filter {
+    display: none;
+  }
 }
 
 .ul-products {
