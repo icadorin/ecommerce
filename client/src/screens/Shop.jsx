@@ -9,7 +9,7 @@ const Shop = () => {
   const [selectCategIndex, setSelectCategIndex] = useState(0);
   const [checkIdxCateg, setCheckIdxCateg] = useState(0);
   const [search, setSearch] = useState('');
-  const [value, onChange] = useState(20000);
+  const [price, onChange] = useState(15000);
   const [productFilter, setProductFilter] = useState([]);
 
   useEffect(() => {
@@ -26,18 +26,22 @@ const Shop = () => {
     { name: 'Fones de ouvido' },
   ];
 
+  const filterPrice = (products) => {
+    console.log(products.filter((product) => product.price <= price));
+    return products.filter((product) => product.price <= price);
+  };
+
   const filterSearchName = (products) => {
     const lowerSearch = search.toLowerCase();
-    console.log(lowerSearch);
     return products.filter((product) => product.name.toLowerCase().includes(lowerSearch));
   };
 
   useEffect(() => {
     let result = productFilter;
-    result = filterSearchName(products);
+    // result = filterSearchName(products);
+    result = filterPrice(products);
     setProductFilter(result);
-    console.log(products);
-  }, [search]);
+  }, [price]);
 
   const handleClickCateg = (index) => {
     checkIdxCateg === index && selectCateg === true ? setSelectCateg(false) : setSelectCateg(true);
@@ -54,14 +58,15 @@ const Shop = () => {
           <div className='box-product'>
             <h1 className='font-filters'>Preço</h1>
             <div className='price-value'>
-              R$ {value}
+              R$ {price}
             </div>
             <input className='input-range'
               type='range'
               id='range'
               min='0'
-              max='20000'
-              value={value}
+              max='15000'
+              step='100'
+              value={price}
               onChange={({ target: { value: radius } }) => {
                 onChange(radius);
               }}
