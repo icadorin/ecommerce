@@ -11,6 +11,7 @@ const Shop = () => {
   const [search, setSearch] = useState('');
   const [price, onChange] = useState(15000);
   const [productFilter, setProductFilter] = useState([]);
+  const [catIndex, setCatIndex] = useState(0);
 
   useEffect(() => {
     const fetchproducts = async () => {
@@ -22,12 +23,11 @@ const Shop = () => {
   }, []);
 
   let Category = [
-    { name: 'Celulares' },
+    { name: 'Celular' },
     { name: 'Fones de ouvido' },
   ];
 
   const filterPrice = (products) => {
-    console.log(products.filter((product) => product.price <= price));
     return products.filter((product) => product.price <= price);
   };
 
@@ -36,18 +36,26 @@ const Shop = () => {
     return products.filter((product) => product.name.toLowerCase().includes(lowerSearch));
   };
 
+  const filterCateg = (products) => {
+    if (checkIdxCateg === catIndex && selectCateg === false) {
+      return products;
+    }
+    return products.filter((products) => products.category.name === Category[checkIdxCateg].name);
+  };
+
   useEffect(() => {
-    let result = productFilter;
-    // result = filterSearchName(products);
-    result = filterPrice(products);
+    let result = products;
+    result = filterSearchName(result);
+    result = filterPrice(result);
+    result = filterCateg(result);
     setProductFilter(result);
-  }, [price]);
+  }, [search, price, checkIdxCateg, selectCateg]);
 
   const handleClickCateg = (index) => {
+    setCatIndex(index);
     checkIdxCateg === index && selectCateg === true ? setSelectCateg(false) : setSelectCateg(true);
     setCheckIdxCateg(index);
     setSelectCategIndex(index);
-    // console.log(Category[index].name);
   };
 
   return (
