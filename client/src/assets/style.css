@@ -265,6 +265,11 @@ ul {
   color: #000;
 }
 
+.prod-not-found {
+  margin-top: 60px;
+  color: #a3a3a3;
+}
+
 .footer {
   margin-top: 100px;
 }
