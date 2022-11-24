@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import NavButton from '../buttons/navbutton';
 import { Link } from 'react-router-dom';
-import Container from '../container/container.component';
+import Container from '../container';
 import { IoMenu, IoClose, IoCartOutline } from "react-icons/io5";
 
 const Navbar = () => {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Container from '../components/container/container.component';
+import Container from '../components/container';
 import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
+import Slider from '../components/slider';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const Shop = () => {
   const [selectCategIndex, setSelectCategIndex] = useState(0);
   const [checkIdxCateg, setCheckIdxCateg] = useState(0);
   const [search, setSearch] = useState('');
-  const [price, onChange] = useState(15000);
+  const [price, setPrice] = useState(15000);
   const [productFilter, setProductFilter] = useState([]);
   const [catIndex, setCatIndex] = useState(0);
 
@@ -58,6 +59,10 @@ const Shop = () => {
     setSelectCategIndex(index);
   };
 
+  const handleChange = (event) => {
+    setPrice(event.target.value);
+  };
+
   return (
     <Container>
       <h2 className='filter-desc'>Filtros</h2>
@@ -68,16 +73,12 @@ const Shop = () => {
             <div className='price-value'>
               R$ {price}
             </div>
-            <input className='input-range'
-              type='range'
-              id='range'
-              min='0'
-              max='15000'
-              step='100'
+            <Slider
               value={price}
-              onChange={({ target: { value: radius } }) => {
-                onChange(radius);
-              }}
+              handleChange={handleChange}
+              min={0}
+              max={15000}
+              step={100}
             />
             <hr className='skyline'></hr>
             <h1 className='font-filters'>Categoria</h1>

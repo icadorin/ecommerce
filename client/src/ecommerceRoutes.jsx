@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/navbar/navbar.component';
+import Navbar from './components/navbar';
 import Home from './screens/Home';
 import Shop from './screens/Shop';
-import Footer from './components/footer/footer.component';
+import Footer from './components/footer';
 
 const EcommerceRoutes = () => {
   return (
