@@ -3,7 +3,6 @@ import Container from '../components/Container';
 import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
 import Slider from '../components/Slider';
-import CardItems from '../components/CardItems';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
