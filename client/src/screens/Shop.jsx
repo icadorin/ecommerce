@@ -117,11 +117,20 @@ const Shop = () => {
                 (<h1 className='prod-not-found'>Produto não encontrado :(</h1>
                 ) : (
                   productFilter.map((product) => (
-                    <CardItems>
-                      {product._id}
-                      {product.name}
-                      {product.price}
-                    </CardItems>
+                    <li className='li-products'>
+                      <div>
+                        <div className='div-img-prod'>
+                          <img className='img-prod' src={`/api/product/smallimage/${product._id}`} />
+                        </div>
+                        <hr className='skyline'></hr>
+                        <h1 className='prod-desc' href={product.name}>
+                          {product.name}
+                        </h1>
+                        <h1 className='prod-desc' href={product.price}>
+                          {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                        </h1>
+                      </div>
+                    </li>
                   ))
                 )
               }
