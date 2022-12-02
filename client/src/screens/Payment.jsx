@@ -9,19 +9,20 @@ const Payment = () => {
 
   const product = {
     price: 15.70,
-    description: "Produto teste",
-  };
+    description: "Produto teste pagamento"
+  }
 
   useEffect(() => {
     const script = document.createElement("script");
     const id = "ARrMsMjSArAymJP3FMTWxE7rws9Dw_3qKWMuIKWL7VYJiaq4oZ3QvZGSh_tu7NenH9arHaIz4FK85GNM";
-    script.scr = `https://www.paypal.com/sdk/js?currency=BRL&client-id=${id}`;
+    script.src = `https://www.paypal.com/sdk/js?currency=BRL&client-id=${id}`;
 
-    script.addEventListener('load', () => setLoaded(true));
+    script.addEventListener("load", () => setLoaded(true));
+
     document.body.appendChild(script);
 
     if (loaded) {
-      function loadButtonAndLogic() {
+      function loadButtonsAndLogic() {
         setTimeout(() => {
           window.paypal
           .Buttons({
@@ -38,7 +39,7 @@ const Payment = () => {
                 ]
               });
             },
-            onApprove: async (_, actions) => {
+            onApprove: async(_, actions) => {
               const order = await actions.order.capture();
 
               setPaid(true);
@@ -49,22 +50,24 @@ const Payment = () => {
           .render(paypalRef);
         })
       }
-      loadButtonAndLogic();
+      loadButtonsAndLogic();
     }
-  });
+  })
 
   return (
     <Container>
+      <div className='box-payment'>
         {paid ? (
           <div>
-            <h1>A compra foi realizada com sucesso!</h1>
+            <h1>Compra realizada com sucesso!</h1>
           </div>
         ) : (
-          <>
-          <h1>{product.description} por R${product.price}</h1>
-          <div ref={v => (paypalRef = v)} />
-          </>
+          <div className='div-payment'>
+            <h1>{product.description} por R$ {product.price}</h1>
+            <div ref={v => (paypalRef = v)} />
+          </div>
         )}
+      </div>
     </Container>
   );
 }

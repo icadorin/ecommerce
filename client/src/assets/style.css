@@ -270,6 +270,17 @@ ul {
   color: #a3a3a3;
 }
 
+.box-payment {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.div-payment {
+  width: 300px;
+}
+
 .footer {
   margin-top: 100px;
 }
