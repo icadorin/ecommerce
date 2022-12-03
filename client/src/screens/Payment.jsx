@@ -59,12 +59,13 @@ const Payment = () => {
       <div className='box-payment'>
         {paid ? (
           <div>
-            <h1>Compra realizada com sucesso!</h1>
+            <h1 className='success'>Compra realizada com sucesso!</h1>
           </div>
         ) : (
           <div className='div-payment'>
-            <h1>{product.description} por R$ {product.price}</h1>
-            <div ref={v => (paypalRef = v)} />
+            <h1 className='payment-desc'>{product.description}</h1>
+            <h1 className='payment-price'>{product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h1>
+            <div className='paypal-buttons' ref={v => (paypalRef = v)} />
           </div>
         )}
       </div>

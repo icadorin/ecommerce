@@ -274,11 +274,29 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 180px;
 }
 
 .div-payment {
   width: 300px;
+}
+
+.payment-desc {
+  font-size: 18px;
+  text-align: center;
+}
+
+.payment-price {
+  font-size: 30px;
+  text-align: center;
+}
+
+.paypal-buttons {
+  margin-top: 10px;
+}
+
+.success {
+  color: green;
 }
 
 .footer {
