@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import Container from '../components/Container';
 import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
 import Slider from '../components/Slider';
+import ViewProduct from './ViewProduct';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -116,20 +118,22 @@ const Shop = () => {
                 (<h1 className='prod-not-found'>Produto não encontrado :(</h1>
                 ) : (
                   productFilter.map((product) => (
-                    <li className='li-products'>
-                      <div>
-                        <div className='div-img-prod'>
-                          <img className='img-prod' src={`/api/product/smallimage/${product._id}`} />
+                    <Link to={"/viewproduct"}>
+                      <li className='li-products'>
+                        <div>
+                          <div className='div-img-prod'>
+                            <img className='img-prod' src={`/api/product/smallimage/${product._id}`} />
+                          </div>
+                          <hr className='skyline'></hr>
+                          <h1 className='prod-desc' href={product.name}>
+                            {product.name}
+                          </h1>
+                          <h1 className='prod-desc' href={product.price}>
+                            {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                          </h1>
                         </div>
-                        <hr className='skyline'></hr>
-                        <h1 className='prod-desc' href={product.name}>
-                          {product.name}
-                        </h1>
-                        <h1 className='prod-desc' href={product.price}>
-                          {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-                        </h1>
-                      </div>
-                    </li>
+                      </li>
+                    </Link>
                   ))
                 )
               }

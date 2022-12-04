@@ -25,29 +25,29 @@ const Payment = () => {
       function loadButtonsAndLogic() {
         setTimeout(() => {
           window.paypal
-          .Buttons({
-            createOrder: (data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    description: product.description,
-                    amount: {
-                      currency_code: "BRL",
-                      value: product.price
+            .Buttons({
+              createOrder: (data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      description: product.description,
+                      amount: {
+                        currency_code: "BRL",
+                        value: product.price
+                      }
                     }
-                  }
-                ]
-              });
-            },
-            onApprove: async(_, actions) => {
-              const order = await actions.order.capture();
+                  ]
+                });
+              },
+              onApprove: async (_, actions) => {
+                const order = await actions.order.capture();
 
-              setPaid(true);
+                setPaid(true);
 
-              console.log(order);
-            }
-          })
-          .render(paypalRef);
+                console.log(order);
+              }
+            })
+            .render(paypalRef);
         })
       }
       loadButtonsAndLogic();
@@ -64,7 +64,9 @@ const Payment = () => {
         ) : (
           <div className='div-payment'>
             <h1 className='payment-desc'>{product.description}</h1>
-            <h1 className='payment-price'>{product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h1>
+            <h1 className='payment-price'>
+              {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+            </h1>
             <div className='paypal-buttons' ref={v => (paypalRef = v)} />
           </div>
         )}

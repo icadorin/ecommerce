@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './screens/Home';
 import Shop from './screens/Shop';
+import ViewProduct from './screens/ViewProduct';
 import Payment from './screens/Payment';
 import Footer from './components/Footer';
 
@@ -13,6 +14,7 @@ const EcommerceRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/viewproduct" element={<ViewProduct />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
       <Footer />
