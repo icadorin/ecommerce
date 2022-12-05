@@ -1,16 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from "react-router-dom";
 import Container from '../components/Container';
+import axios from 'axios';
 
 const Payment = () => {
+  const [product, setProduct] = useState([]);
   const [paid, setPaid] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
+  const { id } = useParams();
   let paypalRef = useRef();
 
-  const product = {
-    price: 15.70,
-    description: "Produto teste pagamento"
-  }
+  useEffect(() => {
+    const fetchproduct = async () => {
+      const { data } = await axios.get(`/api/product/${id}`);
+      setProduct(data);
+    };
+    fetchproduct();
+  }, []);
+
+  const formatPrice = product.price ?
+    product.price.
+      toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : '';
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -65,7 +76,7 @@ const Payment = () => {
           <div className='div-payment'>
             <h1 className='payment-desc'>{product.description}</h1>
             <h1 className='payment-price'>
-              {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+              {formatPrice}
             </h1>
             <div className='paypal-buttons' ref={v => (paypalRef = v)} />
           </div>

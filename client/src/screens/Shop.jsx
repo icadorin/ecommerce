@@ -4,7 +4,6 @@ import Container from '../components/Container';
 import { IoSearch } from "react-icons/io5";
 import axios from 'axios';
 import Slider from '../components/Slider';
-import ViewProduct from './ViewProduct';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -118,7 +117,7 @@ const Shop = () => {
                 (<h1 className='prod-not-found'>Produto não encontrado :(</h1>
                 ) : (
                   productFilter.map((product) => (
-                    <Link to={"/viewproduct"}>
+                    <Link to={`/viewproduct/${product._id}`}>
                       <li className='li-products'>
                         <div>
                           <div className='div-img-prod'>

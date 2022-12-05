@@ -14,8 +14,8 @@ const EcommerceRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/viewproduct" element={<ViewProduct />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/viewproduct/:id" element={<ViewProduct />} />
+        <Route path="/payment/:id" element={<Payment />} />
       </Routes>
       <Footer />
     </BrowserRouter>

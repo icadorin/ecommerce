@@ -12,7 +12,6 @@ ul {
 
 a:-webkit-any-link {
   text-decoration: none;
-  color: black;
   cursor: pointer;
 }
 
@@ -215,6 +214,7 @@ a:-webkit-any-link {
 
 .li-products {
   border-radius: 2px;
+  padding-top: 1px;
   margin-top: 30px;
   margin-left: 30px;
   height: 280px;
@@ -246,6 +246,7 @@ a:-webkit-any-link {
 }
 
 .prod-desc {
+  color: black;
   text-align: center;
   font-size: 15px;
   margin: 10px;
@@ -274,6 +275,43 @@ a:-webkit-any-link {
 .prod-not-found {
   margin-top: 60px;
   color: #a3a3a3;
+}
+
+.vw-prod-box {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.vw-prod-img {
+  height: 400px;
+  width: 400px;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.cn {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.buy-button {
+  background-color: #6253f0;
+  color: #F6F6EA;
+  font-weight: bold;
+  padding: 10px 50px;
+  border-radius: 4px;
+  transition-duration: 500ms;
+  margin-right: 30px;
+  margin-left: 30px;
+  border: none;
+  opacity: 0.8;
+}
+
+.buy-button:hover {
+  transition-duration: 500ms;
+  color: black;
 }
 
 .box-payment {
