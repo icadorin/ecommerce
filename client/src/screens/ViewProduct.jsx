@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import { Link, useParams } from "react-router-dom";
-import axios from 'axios';
+import eccomerceFetch from '../axios/config';
 
 const ViewProduct = () => {
 
@@ -11,15 +11,18 @@ const ViewProduct = () => {
 
   useEffect(() => {
     const fetchproduct = async () => {
-      const { data } = await axios.get(`/api/product/${id}`);
+      const { data } = await eccomerceFetch.get(`/${id}`);
       setProduct(data);
     };
     fetchproduct();
   }, []);
 
-  const formatPrice = product.price ?
-    product.price.
-      toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : '';
+  const formatPrice = product.price ? product.price.
+                        toLocaleString(
+                          'pt-br', { style: 'currency', currency: 'BRL' }
+                        ) : (
+                          ''
+                        );
 
   return (
     <Container>

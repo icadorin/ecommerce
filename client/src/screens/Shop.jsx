@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Container from '../components/Container';
 import { IoSearch } from "react-icons/io5";
-import axios from 'axios';
 import Slider from '../components/Slider';
+import eccomerceFetch from '../axios/config';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ const Shop = () => {
 
   useEffect(() => {
     const fetchproducts = async () => {
-      const { data } = await axios.get('/api/product/list');
+      const { data } = await eccomerceFetch.get('/list');
       setProducts(data);
       setProductFilter(data);
     };
