@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Container from '../components/Container';
-import { IoSearch } from "react-icons/io5";
 import Slider from '../components/Slider';
 import eccomerceFetch from '../axios/config';
+import SearchBar from '../components/SearchBar';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -64,6 +64,10 @@ const Shop = () => {
     setPrice(event.target.value);
   };
 
+  const updateBar = (search) => {
+    setSearch(search);
+  };
+
   return (
     <Container>
       <h2 className='filter-desc'>Filtros</h2>
@@ -101,16 +105,7 @@ const Shop = () => {
         <div>
           <div className='container-product-list'>
             <div className='div-input-filter'>
-              <input
-                className='input-filter'
-                type='text'
-                value={search}
-                placeholder='Buscar produto'
-                onFocus={(e) => e.target.placeholder = ''}
-                onBlur={(e) => e.target.placeholder = 'Buscar produto'}
-                onChange={(ev) => setSearch(ev.target.value)}
-              />
-              <IoSearch className='icon-filter' />
+              <SearchBar handleSearch={updateBar} />
             </div>
             <ul className='ul-products'>
               {productFilter.length === 0 ?
