@@ -3,7 +3,7 @@ import '../../assets/style.css'
 
 const NavButton = (props) => {
   return (
-    <button className='login-button'>
+    <button className='nav-button'>
       {props.children}
     </button>
   );

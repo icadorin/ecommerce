@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavButton from '../Buttons/navbutton';
+import NavButton from '../Buttons/NavButton';
 import { Link } from 'react-router-dom';
 import Container from '../Container';
 import { IoMenu, IoClose, IoCartOutline } from "react-icons/io5";

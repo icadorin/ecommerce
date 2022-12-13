@@ -3,7 +3,8 @@ import Container from '../components/Container';
 import Slider from '../components/Slider';
 import eccomerceFetch from '../axios/config';
 import SearchBar from '../components/SearchBar';
-import FilterPanel from '../components/FilterPanel';
+import ListProducts from '../components/ListProducts';
+import Categories from '../components/Categories';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -24,7 +25,7 @@ const Shop = () => {
     fetchproducts();
   }, []);
 
-  let Category = [
+  let category = [
     { name: 'Celular' },
     { name: 'Fones de ouvido' },
   ];
@@ -40,9 +41,10 @@ const Shop = () => {
 
   const filterCateg = (products) => {
     if (checkIdxCateg === catIndex && selectCateg === false) {
+      console.log('exit');
       return products;
     }
-    return products.filter((products) => products.category.name === Category[checkIdxCateg].name);
+    return products.filter((products) => products.category.name === category[checkIdxCateg].name);
   };
 
   useEffect(() => {
@@ -59,6 +61,15 @@ const Shop = () => {
     setCheckIdxCateg(index);
     setSelectCategIndex(index);
   };
+
+  const clearFilter = () => {
+    setSelectCateg(false);
+    setSelectCategIndex(0);
+    setCheckIdxCateg(0);
+    setCatIndex(0);
+    setPrice(15000);
+    setSearch('');
+  }
 
   const handleChange = (event) => {
     setPrice(event.target.value);
@@ -87,27 +98,25 @@ const Shop = () => {
             />
             <hr className='skyline'></hr>
             <h1 className='font-filters'>Categoria</h1>
-            <ul>
-              {
-                Category.map((category, index) => (
-                  <li className='font-filters-items pointer-pass'>
-                    <h1 key={index} onClick={(e) => handleClickCateg(index)}
-                      className={`${selectCateg && index === selectCategIndex ? 'select' : ''}`}
-                    >
-                      {category.name}
-                    </h1>
-                  </li>
-                ))
-              }
-            </ul>
+            <Categories
+              handleCat={handleClickCateg}
+              category={category}
+              selectCateg={selectCateg}
+              selectCategIndex={selectCategIndex}
+            />
+            <div className='clear'>
+              <button className='clear-button' onClick={clearFilter}>
+                Limpar
+              </button>
+            </div>
           </div>
         </div>
         <div>
           <div className='container-product-list'>
             <div className='div-input-filter'>
-              <SearchBar handleSearch={updateBar} />
+              <SearchBar handleSearch={updateBar} search={search} />
             </div>
-              <FilterPanel productFilter={productFilter}/>
+            <ListProducts productFilter={productFilter} />
           </div>
         </div>
       </div>

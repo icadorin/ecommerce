@@ -46,6 +46,24 @@ a:-webkit-any-link {
   font-size: 7px;
 }
 
+.clear {
+  margin-top: 30px;
+}
+
+.clear-button {
+  background-color: #b334cc;
+  color: #F6F6EA;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition-duration: 500ms;
+  border: none;
+}
+
+.clear-button:hover {
+  color: #000;
+}
+
 .div-container {
   display: flex;
   justify-content: space-between;
@@ -83,16 +101,15 @@ a:-webkit-any-link {
 }
 
 .list-items:hover {
-  color: #fd7e7e;
+  color: #c756dd;
   transition-duration: 500ms;
 }
 
 .shopping-cart {
   font-size: 35px;
-  color: #fd7e7e;
+  color: #b334cc;
   transition-duration: 500ms;
   margin-left: 30px;
-  opacity: 0.8;
 }
 
 .shopping-cart:hover {
@@ -100,22 +117,19 @@ a:-webkit-any-link {
   transition-duration: 500ms;
 }
 
-.login-button {
-  background-color: #fd7e7e;
+.nav-button {
+  background-color: #b334cc;
   color: #F6F6EA;
   font-weight: bold;
-  padding: 5px;
+  padding: 9px 14px;
   border-radius: 4px;
-  height: 35px;
-  width: 65px;
   transition-duration: 500ms;
   margin-right: 30px;
   margin-left: 30px;
   border: none;
-  opacity: 0.8;
 }
 
-.login-button:hover {
+.nav-button:hover {
   transition-duration: 500ms;
   color: #000;
 }
@@ -129,8 +143,9 @@ a:-webkit-any-link {
   margin-top: 10px;
   border-radius: 2px;
   margin-left: 30px;
-  height: 400px;
+  height: 280px;
   width: 220px;
+  padding-bottom: 10px;
   background-color: #F6F6EA;
   box-shadow: 0 0 0.2em #a3a3a3;
 }
@@ -154,7 +169,7 @@ a:-webkit-any-link {
   appearance: none;
   width: 15px;
   height: 15px;
-  background: #fd7e7e;
+  background: #c756dd;
   cursor: pointer;
 }
 
@@ -225,7 +240,7 @@ a:-webkit-any-link {
 }
 
 .li-products:hover {
-  box-shadow: 0 0 1em #fd7e7e;
+  box-shadow: 0 0 1em #c097c9;
   transition-duration: 600ms;
 }
 
@@ -253,11 +268,11 @@ a:-webkit-any-link {
 }
 
 .select {
-  border: solid 1px #fd7e7e;
+  border: solid 1px #c756dd;
   border-radius: 2px;
-  box-shadow: 0 0 1em #ffa8a8;
-  background-color: #ffe0e0;
+  background-color: #fae0ff;
   color: #000;
+  padding: 1px;
 }
 
 .pointer-pass {
@@ -266,8 +281,8 @@ a:-webkit-any-link {
 
 .pointer-pass:hover {
   cursor: pointer;
-  box-shadow: 0 0 1em #fd7e7e;
-  background-color: #ffe0e0;
+  box-shadow: 0 0 1em #cd7edd;
+  background-color: #fae0ff;
   transition-duration: 600ms;
   color: #000;
 }
@@ -297,7 +312,7 @@ a:-webkit-any-link {
 }
 
 .buy-button {
-  background-color: #6253f0;
+  background-color: #b334cc;
   color: #F6F6EA;
   font-weight: bold;
   padding: 10px 50px;
@@ -306,12 +321,11 @@ a:-webkit-any-link {
   margin-right: 30px;
   margin-left: 30px;
   border: none;
-  opacity: 0.8;
 }
 
 .buy-button:hover {
   transition-duration: 500ms;
-  color: black;
+  color: #000;
 }
 
 .box-payment {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const FilterPanel = (props) => {
+const ListProducts = (props) => {
   return (
     <ul className='ul-products'>
       {props.productFilter.length === 0 ?
@@ -31,4 +31,4 @@ const FilterPanel = (props) => {
   );
 }
 
-export default FilterPanel;
+export default ListProducts;
