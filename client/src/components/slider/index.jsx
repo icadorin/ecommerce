@@ -6,7 +6,7 @@ const Slider = ({ value, handleChange, min, max, step }) => {
     <Container>
       <input className='input-range'
         type='range'
-        defaultValue={value}
+        value={value}
         onChange={handleChange}
         min={min}
         max={max}

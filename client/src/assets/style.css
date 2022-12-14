@@ -58,6 +58,7 @@ a:-webkit-any-link {
   border-radius: 4px;
   transition-duration: 500ms;
   border: none;
+  cursor: pointer;
 }
 
 .clear-button:hover {
@@ -110,6 +111,7 @@ a:-webkit-any-link {
   color: #b334cc;
   transition-duration: 500ms;
   margin-left: 30px;
+  cursor: pointer;
 }
 
 .shopping-cart:hover {
@@ -127,6 +129,7 @@ a:-webkit-any-link {
   margin-right: 30px;
   margin-left: 30px;
   border: none;
+  cursor: pointer;
 }
 
 .nav-button:hover {
