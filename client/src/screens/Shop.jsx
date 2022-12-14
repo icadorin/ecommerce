@@ -8,6 +8,7 @@ import Categories from '../components/Categories';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [selectCateg, setSelectCateg] = useState(false);
   const [selectCategIndex, setSelectCategIndex] = useState(0);
   const [checkIdxCateg, setCheckIdxCateg] = useState(0);
@@ -17,18 +18,21 @@ const Shop = () => {
   const [catIndex, setCatIndex] = useState(0);
 
   useEffect(() => {
-    const fetchproducts = async () => {
-      const { data } = await eccomerceFetch.get('/list');
+    const fetchProducts = async () => {
+      const { data } = await eccomerceFetch.get('product/list');
       setProducts(data);
       setProductFilter(data);
     };
-    fetchproducts();
+    fetchProducts();
   }, []);
 
-  let category = [
-    { name: 'Celular' },
-    { name: 'Fones de ouvido' },
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await eccomerceFetch.get('category/all');
+      setCategories(data);
+    };
+    fetchCategories();
+  }, []);
 
   const filterPrice = (products) => {
     return products.filter((product) => product.price <= price);
@@ -41,10 +45,9 @@ const Shop = () => {
 
   const filterCateg = (products) => {
     if (checkIdxCateg === catIndex && selectCateg === false) {
-      console.log('exit');
       return products;
     }
-    return products.filter((products) => products.category.name === category[checkIdxCateg].name);
+    return products.filter((products) => products.category.name === categories[checkIdxCateg].name);
   };
 
   useEffect(() => {
@@ -100,7 +103,7 @@ const Shop = () => {
             <h1 className='font-filters'>Categoria</h1>
             <Categories
               handleCat={handleClickCateg}
-              category={category}
+              categories={categories}
               selectCateg={selectCateg}
               selectCategIndex={selectCategIndex}
             />

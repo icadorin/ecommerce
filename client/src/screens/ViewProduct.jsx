@@ -11,18 +11,18 @@ const ViewProduct = () => {
 
   useEffect(() => {
     const fetchproduct = async () => {
-      const { data } = await eccomerceFetch.get(`/${id}`);
+      const { data } = await eccomerceFetch.get(`product/${id}`);
       setProduct(data);
     };
     fetchproduct();
   }, []);
 
   const formatPrice = product.price ? product.price.
-                        toLocaleString(
-                          'pt-br', { style: 'currency', currency: 'BRL' }
-                        ) : (
-                          ''
-                        );
+    toLocaleString(
+      'pt-br', { style: 'currency', currency: 'BRL' }
+    ) : (
+      ''
+    );
 
   return (
     <Container>
