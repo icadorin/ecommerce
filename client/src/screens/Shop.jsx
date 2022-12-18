@@ -65,7 +65,7 @@ const Shop = () => {
     setSelectCategIndex(index);
   };
 
-  const clearFilter = () => {
+  const clearFilters = () => {
     setSelectCateg(false);
     setSelectCategIndex(0);
     setCheckIdxCateg(0);
@@ -108,7 +108,7 @@ const Shop = () => {
               selectCategIndex={selectCategIndex}
             />
             <div className='clear'>
-              <button className='clear-button' onClick={clearFilter}>
+              <button className='clear-button' onClick={clearFilters}>
                 Limpar
               </button>
             </div>
