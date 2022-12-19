@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NavButton from '../Buttons/NavButton';
 import { Link } from 'react-router-dom';
 import Container from '../Container';
 import { IoMenu, IoClose, IoCartOutline } from "react-icons/io5";
@@ -38,9 +37,13 @@ const Navbar = () => {
               ))
             }
             <IoCartOutline className='shopping-cart' />
-            <NavButton>
+            <Link
+              to={'/login'}
+              id='button'
+              className='login-button'
+            >
               Login
-            </NavButton>
+            </Link>
           </ul>
         </div>
       </nav>

@@ -5,6 +5,7 @@ import eccomerceFetch from '../axios/config';
 import SearchBar from '../components/SearchBar';
 import ListProducts from '../components/ListProducts';
 import Categories from '../components/Categories';
+import Button from '../components/Buttons/Button';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -108,9 +109,9 @@ const Shop = () => {
               selectCategIndex={selectCategIndex}
             />
             <div className='clear'>
-              <button className='clear-button' onClick={clearFilters}>
+              <Button onClick={clearFilters}>
                 Limpar
-              </button>
+              </Button>
             </div>
           </div>
         </div>
