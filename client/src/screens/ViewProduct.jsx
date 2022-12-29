@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import { Link, useParams } from "react-router-dom";
-import eccomerceFetch from '../axios/config';
+import eccomerceFetch from '../hooks/config';
 
 const ViewProduct = () => {
 

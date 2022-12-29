@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import Slider from '../components/Slider';
-import eccomerceFetch from '../axios/config';
+import eccomerceFetch from '../hooks/config';
 import SearchBar from '../components/SearchBar';
 import ListProducts from '../components/ListProducts';
 import Categories from '../components/Categories';

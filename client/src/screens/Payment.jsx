@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import Container from '../components/Container';
-import eccomerceFetch from '../axios/config';
+import eccomerceFetch from '../hooks/config';
 
 const Payment = () => {
   const [product, setProduct] = useState([]);
