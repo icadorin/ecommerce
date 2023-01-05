@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './screens/Home';
 import Shop from './screens/Shop';
@@ -7,10 +7,11 @@ import Login from './screens/Login';
 import ViewProduct from './screens/ViewProduct';
 import Payment from './screens/Payment';
 import Footer from './components/Footer';
+import Container from './components/Container';
 
-const EcommerceRoutes = () => {
+function App() {
   return (
-    <BrowserRouter>
+    <Container>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -20,8 +21,8 @@ const EcommerceRoutes = () => {
         <Route path="/payment/:id" element={<Payment />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </Container>
   );
 }
 
-export default EcommerceRoutes;
+export default App;

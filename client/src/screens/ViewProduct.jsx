@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import { Link, useParams } from "react-router-dom";
-import eccomerceFetch from '../hooks/config';
+import useApi from '../hooks/useApi';
 
 const ViewProduct = () => {
 
@@ -11,7 +11,7 @@ const ViewProduct = () => {
 
   useEffect(() => {
     const fetchproduct = async () => {
-      const { data } = await eccomerceFetch.get(`product/${id}`);
+      const { data } = await useApi.get(`product/${id}`);
       setProduct(data);
     };
     fetchproduct();

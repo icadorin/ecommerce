@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import Slider from '../components/Slider';
-import eccomerceFetch from '../hooks/config';
+import useApi from '../hooks/useApi';
 import SearchBar from '../components/SearchBar';
 import ListProducts from '../components/ListProducts';
 import Categories from '../components/Categories';
@@ -20,7 +20,7 @@ const Shop = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const { data } = await eccomerceFetch.get('product/list');
+      const { data } = await useApi.get('product/list');
       setProducts(data);
       setProductFilter(data);
     };
@@ -29,7 +29,7 @@ const Shop = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await eccomerceFetch.get('category/all');
+      const { data } = await useApi.get('category/all');
       setCategories(data);
     };
     fetchCategories();
@@ -39,7 +39,7 @@ const Shop = () => {
     return products.filter((product) => product.price <= price);
   };
 
-  const filterSearchName = (products) => {
+  const filterName = (products) => {
     const lowerSearch = search.toLowerCase();
     return products.filter((product) => product.name.toLowerCase().includes(lowerSearch));
   };
@@ -53,7 +53,7 @@ const Shop = () => {
 
   useEffect(() => {
     let result = products;
-    result = filterSearchName(result);
+    result = filterName(result);
     result = filterPrice(result);
     result = filterCateg(result);
     setProductFilter(result);

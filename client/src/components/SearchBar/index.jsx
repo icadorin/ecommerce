@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from '../Container';
 import { IoSearch } from "react-icons/io5";
 

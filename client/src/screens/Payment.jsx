@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import Container from '../components/Container';
-import eccomerceFetch from '../hooks/config';
+import useApi from '../hooks/useApi';
 
 const Payment = () => {
   const [product, setProduct] = useState([]);
@@ -13,7 +13,7 @@ const Payment = () => {
 
   useEffect(() => {
     const fetchproduct = async () => {
-      const { data } = await eccomerceFetch.get(`product/${id}`);
+      const { data } = await useApi.get(`product/${id}`);
       setProduct(data);
     };
     fetchproduct();
