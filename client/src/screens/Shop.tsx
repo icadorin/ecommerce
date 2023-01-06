@@ -9,7 +9,7 @@ import Button from '../components/Buttons/Button';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([] as any[]);
   const [selectCateg, setSelectCateg] = useState(false);
   const [selectCategIndex, setSelectCategIndex] = useState(0);
   const [checkIdxCateg, setCheckIdxCateg] = useState(0);
@@ -35,31 +35,31 @@ const Shop = () => {
     fetchCategories();
   }, []);
 
-  const filterPrice = (products) => {
-    return products.filter((product) => product.price <= price);
+  const filterPrice = (products: any) => {
+    return products.filter((product: any) => product.price <= price);
   };
 
-  const filterName = (products) => {
+  const filterName = (products: any) => {
     const lowerSearch = search.toLowerCase();
-    return products.filter((product) => product.name.toLowerCase().includes(lowerSearch));
+    return products.filter((product: any) => product.name.toLowerCase().includes(lowerSearch));
   };
 
-  const filterCateg = (products) => {
+  const filterCateg = (products: any) => {
     if (checkIdxCateg === catIndex && selectCateg === false) {
       return products;
     }
-    return products.filter((products) => products.category.name === categories[checkIdxCateg].name);
+    return products.filter((products: any) => products.category.name === categories[checkIdxCateg].name);
   };
 
   useEffect(() => {
-    let result = products;
+    let result : any = products;
     result = filterName(result);
     result = filterPrice(result);
     result = filterCateg(result);
     setProductFilter(result);
   }, [search, price, checkIdxCateg, selectCateg]);
 
-  const handleClickCateg = (index) => {
+  const handleClickCateg = (index: number) => {
     setCatIndex(index);
     checkIdxCateg === index && selectCateg === true ? setSelectCateg(false) : setSelectCateg(true);
     setCheckIdxCateg(index);
@@ -75,11 +75,11 @@ const Shop = () => {
     setSearch('');
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setPrice(event.target.value);
   };
 
-  const updateBar = (search) => {
+  const updateBar = (search: string) => {
     setSearch(search);
   };
 
@@ -109,9 +109,10 @@ const Shop = () => {
               selectCategIndex={selectCategIndex}
             />
             <div className='clear'>
-              <Button onClick={clearFilters}>
-                Limpar
-              </Button>
+              <Button
+                onClick={clearFilters}
+                children='Limpar'
+              />
             </div>
           </div>
         </div>

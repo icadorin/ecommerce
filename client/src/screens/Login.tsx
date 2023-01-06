@@ -19,9 +19,11 @@ const Login = () => {
               onBlur={'Senha'}
             />
             <div className='box-login-button'>
-              <Button css={'sing-in'}>
-                Entrar
-              </Button>
+              {/* <Button
+                css='sing-in'
+                onClick={(e)=>}
+                children='Entrar'
+              /> */}
             </div>
           </div>
         </div>
