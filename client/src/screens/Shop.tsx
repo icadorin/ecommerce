@@ -5,7 +5,7 @@ import useApi from '../hooks/useApi';
 import SearchBar from '../components/SearchBar';
 import ListProducts from '../components/ListProducts';
 import Categories from '../components/Categories';
-import Button from '../components/Buttons/Button';
+import Button from '../components/Buttons';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -52,7 +52,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    let result : any = products;
+    let result: any = products;
     result = filterName(result);
     result = filterPrice(result);
     result = filterCateg(result);
@@ -119,9 +119,14 @@ const Shop = () => {
         <div>
           <div className='container-product-list'>
             <div className='div-input-filter'>
-              <SearchBar handleSearch={updateBar} search={search} />
+              <SearchBar
+                handleSearch={updateBar}
+                search={search}
+              />
             </div>
-            <ListProducts productFilter={productFilter} />
+            <ListProducts
+              productFilter={productFilter}
+            />
           </div>
         </div>
       </div>
