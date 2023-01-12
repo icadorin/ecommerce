@@ -19,7 +19,7 @@ const Categories: React.FC<Props> = ({
         categories.map((categories: any, index: number) => (
           <li className='font-filters-items pointer-pass'>
             <h1 key={index} onClick={(e) => handleCat(index)}
-              className={`${selectCateg && index === selectCategIndex? 'select' : ''}`}
+              className={`${selectCateg && index === selectCategIndex ? 'select' : ''}`}
             >
               {categories.name}
             </h1>
