@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const ListProducts = (props) => {
+interface Props {
+  productFilter: any
+}
+
+const ListProducts: React.FC<Props> = ({
+  productFilter
+}) => {
   return (
     <ul className='ul-products'>
-      {props.productFilter.length === 0 ?
+      {productFilter.length === 0 ?
         (<h1 className='prod-not-found'>Produto não encontrado :(</h1>
         ) : (
-          props.productFilter.map((product) => (
+          productFilter.map((product: any) => (
             <Link to={`/viewproduct/${product._id}`}>
               <li className='li-products'>
                 <div>
@@ -15,10 +21,10 @@ const ListProducts = (props) => {
                     <img className='img-prod' src={`/api/product/smallimage/${product._id}`} />
                   </div>
                   <hr className='skyline'></hr>
-                  <h1 className='prod-desc' href={product.name}>
+                  <h1 className='prod-desc'>
                     {product.name}
                   </h1>
-                  <h1 className='prod-desc' href={product.price}>
+                  <h1 className='prod-desc'>
                     {product.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
                   </h1>
                 </div>
