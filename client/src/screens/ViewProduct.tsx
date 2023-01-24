@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Container from '../components/Container';
 import { Link, useParams } from "react-router-dom";
+import { Product } from '../types/Product';
+import Container from '../components/Container';
 import useApi from '../hooks/useApi';
 
 const ViewProduct = () => {
 
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<Product | undefined>();
   const urlImage = '/api/product/image/';
+  let formatPrice: string | undefined;
+  let name: string | undefined;
 
   useEffect(() => {
     const fetchproduct = async () => {
@@ -17,12 +20,14 @@ const ViewProduct = () => {
     fetchproduct();
   }, []);
 
-  const formatPrice = product.price ? product.price.
-    toLocaleString(
+  if (product != undefined) {
+    name = product.name;
+    formatPrice = product.price ? product.price.toLocaleString(
       'pt-br', { style: 'currency', currency: 'BRL' }
     ) : (
       ''
     );
+  }
 
   return (
     <Container>
@@ -32,7 +37,7 @@ const ViewProduct = () => {
         </div>
         <hr className='skyline'></hr>
         <h1 className='prod-desc' >
-          {product.name}
+          {name}
         </h1>
         <h1 className='prod-desc'>
           {formatPrice}
